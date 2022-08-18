@@ -86,14 +86,24 @@ class _MyHomePageState extends State<MyHomePage> {
         // 3.  Start the plugin.
         //
         bg.BackgroundGeolocation.start();
+
+        getcurrent();
       }
     });
     super.initState();
   }
 
+  getcurrent() async {
+    bg.Location location = await bg.BackgroundGeolocation.getCurrentPosition(
+        samples: 1, extras: {"event": "terminate", "headless": true});
+  }
+
   int _counter = 0;
 
   Future<void> _incrementCounter() async {
+    bg.Location location = await bg.BackgroundGeolocation.getCurrentPosition(
+        samples: 1, extras: {"event": "terminate", "headless": true});
+
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
